@@ -4,6 +4,8 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var connect = require('gulp-connect');
 var babel = require('gulp-babel');
+var webpack = require('gulp-webpack');
+
 
 gulp.task('sass', function () {
   return gulp.src('./src/sass/*.scss')
@@ -11,24 +13,31 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('./dist/css'))
     .pipe(connect.reload());;
 });
- 
-gulp.task('sass:watch', function () {
-  gulp.watch('./src/sass/*.scss', ['sass']);
+
+gulp.task('html', function () {
+  gulp.src('./*.html')
+    .pipe(connect.reload());
 });
 
+gulp.task('compilejs', function() {
+  return gulp.src('./src/js/*.js')
+    .pipe(babel({
+      presets: ['es2015']
+    }))
+    .pipe(gulp.dest('./dist/tmp/'))
+    .pipe(webpack({
+      output: {
+        filename: 'main.js',
+      },
+    }))
+    .pipe(gulp.dest('./dist/js/'))
+    .pipe(connect.reload());;
+});
 
 gulp.task('watch', function () {
-  gulp.watch(['./*.html', './src/sass/*.scss', './src/js/*.js'], ['html', 'sass', 'compile-js']);
-});
-
-
-gulp.task('compile-js', () => {
-    return gulp.src('src/js/main.js')
-        .pipe(babel({
-            presets: ['es2015']
-        }))
-        .pipe(gulp.dest('./dist/js'))
-        .pipe(connect.reload());
+  gulp.watch('./*.html', ['html']);
+  gulp.watch('./src/sass/*.scss', ['sass']);
+  gulp.watch('./src/js/*.js', ['compilejs']);
 });
 
 gulp.task('connect', function() {
@@ -39,9 +48,6 @@ gulp.task('connect', function() {
   });
 });
 
-gulp.task('html', function () {
-  gulp.src('./*.html')
-    .pipe(connect.reload());
-});
 
-gulp.task('default', ['connect', "watch"]);
+
+gulp.task('default', ['connect', 'sass', 'compilejs', 'watch']);

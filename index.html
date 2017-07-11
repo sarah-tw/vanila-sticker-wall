@@ -3,12 +3,25 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title></title>
+	<title>Sarah's Sticker Wall</title>
 	<link rel="stylesheet" href="/dist/css/main.css">
 
 </head>
 <body>
-	<h1>HELLO WORLD</h1>
+	<h1 class="page-title">Sarah's Sticker Wall</h1>
+	 <script id="sticker_template"  type="text/x-jQuery-tmpl">
+	 	<textarea class="sticker" data-id="<%- id %>" rows="4" cols="50">
+			<%- title %>
+		</textarea>
+    </script>
+
+	<div class="stickers" id="sticker_list">
+		<div class="sticker sticker--add" id="new_sticker">
+			+
+		</div>
+	</div>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
 	<script src="./dist/js/main.js"></script>
 </body>
 

@@ -1,8 +1,47 @@
+@import 'reset';
+
 body {
-	color: black;
-	p {
-		background-color: white;
-		font-size: 12px;
-		color: red;
+	background: url(../../src/img/bg.jpg) no-repeat;
+	font-family: "Helvetica Neue",sans-serif;
+	background-size: cover;
+	color: white;
+	margin: 0;
+
+}
+.page-title {
+	text-align: center;
+	padding: 10px 0;
+	margin-bottom: 20px;
+	background-color: antiquewhite;
+	color: #a21da2;
+}
+
+
+.stickers {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 1080px;
+	margin: 0 auto;
+	@for $i from 2 through 5 {
+		@media screen and (min-width: $i * 180px) and (max-width: ($i + 1) * 180px - 1)  {
+			max-width: $i * 180px;
+		}
 	}
+}
+.sticker {
+	background-color: antiquewhite;
+	padding: 20px;
+	width: 118px;
+	color: #a21da2;
+	line-height: 1;
+	margin: 14px 10px;
+	min-height: 80px;
+	font-size: 20px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.sticker--add {
+	font-size: 80px;
+	text-align: center;
+	padding-bottom: 36px;
 }
