@@ -10,14 +10,17 @@
 <body>
 	<h1 class="page-title">Sarah's Sticker Wall</h1>
 	 <script id="sticker_template"  type="text/x-jQuery-tmpl">
-	 	<textarea class="sticker" data-id="<%- id %>" rows="4" cols="50">
-			<%- title %>
-		</textarea>
+		 <div class="sticker-wrapper">
+		 	<textarea class="sticker" data-id="<%- id %>" rows="4" cols="50"><%- title %></textarea>
+			<i class="delete" data-id="<%- id %>">-</i>
+		</div>
     </script>
-
+	
 	<div class="stickers" id="sticker_list">
-		<div class="sticker sticker--add" id="new_sticker">
-			+
+		<div class="sticker-wrapper">
+			<div class="sticker sticker--add" id="new_sticker">
+				+
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js"></script>

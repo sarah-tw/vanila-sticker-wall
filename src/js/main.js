@@ -7,7 +7,7 @@ import $ from 'jquery';
 let StickerWall = () => {
 	const stickerTmpl = _.template($('#sticker_template').html());
 	let stickers = JSON.parse(localStorage.getItem("stickers")) || [];
-	
+
 	let initStickerListDom = () => {
 		let initHtml = '';
 		_.orderBy(stickers, ['id'], ['desc']).map((sticker) => {
@@ -19,10 +19,10 @@ let StickerWall = () => {
 	let addSticker = () => {
 		let newSticker = stickerTmpl({'title': '', 'id': stickers.length});
 		$('#sticker_list').prepend(newSticker);
-		$('#sticker_list .sticker:first-child').focus();
+		$('#sticker_list .sticker-wrapper:first-child .sticker').focus();
 	}
 
-	let onEnterHandler = (e) => {
+	let onKeydownHandler = (e) => {
 		if(e.which == 13) {
 			e.preventDefault();
 			let title = _.trim(e.target.value.replace(/[\n\t]/g, ''));
@@ -37,13 +37,18 @@ let StickerWall = () => {
 			}
 			localStorage.setItem("stickers", JSON.stringify(stickers));
 			$(e.target).blur();
-		}
+			} else if(e.shiftKey && e.which === 78) {
+				e.preventDefault();
+				addSticker();
+			}
 	}
 
 	initStickerListDom();
 
 	$('#new_sticker').on('click', addSticker);
-	$('body').on('keypress', '.sticker', onEnterHandler);
+
+	$('body').on('keydown', '.sticker', onKeydownHandler);
+	$('body').on('keydown', onKeydownHandler);
 
 };
 
