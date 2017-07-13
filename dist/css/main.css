@@ -1,0 +1,72 @@
+h1, h2, h3 {
+  margin: 0;
+  padding: 0; }
+
+body {
+  background: url(../../src/img/bg.jpg) no-repeat;
+  font-family: "Helvetica Neue",sans-serif;
+  background-size: cover;
+  color: white;
+  margin: 0; }
+
+.page-title {
+  text-align: center;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  background-color: antiquewhite;
+  color: #a21da2; }
+
+.stickers {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1080px;
+  margin: 0 auto; }
+  @media screen and (min-width: 360px) and (max-width: 539px) {
+    .stickers {
+      max-width: 360px; } }
+  @media screen and (min-width: 540px) and (max-width: 719px) {
+    .stickers {
+      max-width: 540px; } }
+  @media screen and (min-width: 720px) and (max-width: 899px) {
+    .stickers {
+      max-width: 720px; } }
+  @media screen and (min-width: 900px) and (max-width: 1079px) {
+    .stickers {
+      max-width: 900px; } }
+
+.sticker-wrapper {
+  position: relative; }
+  .sticker-wrapper .delete {
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fd5757;
+    font-size: 30px;
+    line-height: 16px;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.5s all ease; }
+  .sticker-wrapper:hover .delete {
+    opacity: 1; }
+
+.sticker {
+  cursor: pointer;
+  background-color: antiquewhite;
+  padding: 20px;
+  width: 118px;
+  color: #a21da2;
+  line-height: 1;
+  margin: 14px 10px;
+  min-height: 80px;
+  font-size: 20px;
+  overflow-x: hidden;
+  overflow-y: auto; }
+
+.sticker--add {
+  font-size: 80px;
+  text-align: center;
+  padding-bottom: 21px; }
