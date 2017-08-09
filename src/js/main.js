@@ -7,7 +7,7 @@ import $ from 'jquery';
 let StickerWall = () => {
 	const stickerTmpl = _.template($('#sticker_template').html());
 	let stickers = JSON.parse(localStorage.getItem("stickers")) || [];
-
+	
 	let initStickerListDom = () => {
 		let initHtml = '';
 		_.orderBy(stickers, ['id'], ['desc']).map((sticker) => {
@@ -23,7 +23,7 @@ let StickerWall = () => {
 	}
 
 	let onKeydownHandler = (e) => {
-		if(e.which == 13) {
+		if(e.key == 'Enter') {
 			e.preventDefault();
 			let title = _.trim(e.target.value.replace(/[\n\t]/g, ''));
 			const id = parseInt(e.target.dataset.id);
@@ -37,7 +37,7 @@ let StickerWall = () => {
 			}
 			localStorage.setItem("stickers", JSON.stringify(stickers));
 			$(e.target).blur();
-			} else if(e.shiftKey && e.which === 78) {
+			} else if(e.shiftKey && e.key === 'N') {
 				e.preventDefault();
 				addSticker();
 			}
