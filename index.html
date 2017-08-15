@@ -16,12 +16,26 @@
 			</div>
 		</div>
 	</div>
+	<div class="tags-wrapper">
+		<ul class="tags">
+			<p>Please choose a tag for your sticker</p>
+			<li class="tag">Life</li>
+			<li class="tag">Work</li>
+			<li class="tag">Party</li>
+			<li class="tag">Outdoor</li>
+			<li class="tag">Other</li>
+		</ul>		
+	</div>
+
 	<script id="sticker_template"  type="text/x-jQuery-tmpl">
-		 <div class="sticker-wrapper">
-		 	<textarea class="sticker" data-id="<%- sticker.id %>"><%- sticker.title %></textarea>
+		 <div class="sticker-wrapper" data-id="<%- sticker.id %>">
+		 	<textarea class="sticker"><%- sticker.title %></textarea>
 			<div class="actions">
-				<span class="icon-pencil2"></span>
-				<span class="icon-bin delete" data-id="<%- sticker.id %>"></span>
+				<div class="edit-tag">
+					<span><%- sticker.tag %></span>
+					<span class="icon-pencil2"></span>
+				</div>
+				<span class="icon-bin delete"></span>
 			</div>
 		</div>
     </script>

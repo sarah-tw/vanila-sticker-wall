@@ -84,28 +84,33 @@
 		};
 
 		var addSticker = function addSticker() {
-			var sticker = new _sticker2.default("", "default");
+			var sticker = new _sticker2.default("", "life");
 			var newSticker = stickerTmpl({ sticker: sticker });
 			(0, _jquery2.default)('.sticker-wrapper:first-child').after(newSticker);
 			(0, _jquery2.default)('#sticker_list .sticker-wrapper:nth-child(2) .sticker').focus();
 		};
 
+		var updateSticker = function updateSticker(stickers) {
+			localStorage.setItem("stickers", JSON.stringify(stickers));
+		};
+
 		var deleteSticker = function deleteSticker(e) {
 			if (confirm("Would you like to delete this sticker?")) {
-				var id = parseInt(e.target.dataset.id);
+				var id = (0, _jquery2.default)(e.target).closest('.sticker-wrapper')[0].dataset.id;
 				var updatedStickers = stickers.filter(function (s) {
 					return s.id !== parseInt(id);
 				});
-				localStorage.setItem("stickers", JSON.stringify(updatedStickers));
+				updateSticker(updatedStickers);
 				(0, _jquery2.default)(e.target).closest('.sticker-wrapper').remove();
 			}
 		};
 		var saveSticker = function saveSticker(e) {
 			var title = _lodash2.default.trim(e.target.value.replace(/[\n\t]/g, ''));
-			var id = parseInt(e.target.dataset.id);
+			var id = (0, _jquery2.default)(e.target).closest('.sticker-wrapper')[0].dataset.id;
+			id = parseInt(id);
 			if (!id) {
 				id = parseInt(Date.now());
-				var sticker = new _sticker2.default(title, "default", id);
+				var sticker = new _sticker2.default(title, "life", id);
 				e.target.dataset.id = id;
 				stickers.push(sticker);
 			} else {
@@ -115,7 +120,7 @@
 					}
 				});
 			}
-			localStorage.setItem("stickers", JSON.stringify(stickers));
+			updateSticker(stickers);
 		};
 
 		var onKeydownHandler = function onKeydownHandler(e) {
@@ -128,14 +133,33 @@
 			}
 		};
 
+		var showTagBox = function showTagBox(e) {
+			(0, _jquery2.default)('.tags-wrapper').show();
+			var id = (0, _jquery2.default)(e.target).closest('.sticker-wrapper')[0].dataset.id;
+			(0, _jquery2.default)('.tags-wrapper')[0].dataset["id"] = id;
+		};
+
+		var changeTag = function changeTag(e) {
+			var id = (0, _jquery2.default)('.tags-wrapper')[0].dataset.id;
+			_lodash2.default.forEach(stickers, function (sticker) {
+				if (sticker.id === parseInt(id)) {
+					sticker.tag = e.target.innerText;
+				}
+			});
+			updateSticker(stickers);
+			(0, _jquery2.default)('.tags-wrapper').hide();
+		};
+
 		initStickerListDom();
 
 		(0, _jquery2.default)('#new_sticker').on('click', addSticker);
 		(0, _jquery2.default)('.delete').on('click', deleteSticker);
 
 		(0, _jquery2.default)('body').on('keydown', onKeydownHandler);
-		//$('body').on('keydown', '.sticker', onKeydownHandler);
 		(0, _jquery2.default)('body').on('blur', '.sticker', saveSticker);
+
+		(0, _jquery2.default)('body').on('click', '.edit-tag', showTagBox);
+		(0, _jquery2.default)('body').on('click', '.tag', changeTag);
 	};
 
 	StickerWall();

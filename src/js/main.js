@@ -18,26 +18,31 @@ let StickerWall = () => {
 	}
 
 	let addSticker = () => {
-		let sticker = new Sticker("", "default");
+		let sticker = new Sticker("", "life");
 		let newSticker = stickerTmpl({sticker: sticker});
 		$('.sticker-wrapper:first-child').after(newSticker);
 		$('#sticker_list .sticker-wrapper:nth-child(2) .sticker').focus();
 	}
 
+	let updateSticker = (stickers) => {
+		localStorage.setItem("stickers", JSON.stringify(stickers));
+	}
+
 	let deleteSticker = (e) => {
 		if(confirm("Would you like to delete this sticker?")){
-			const id = parseInt(e.target.dataset.id);
+			let id = $(e.target).closest('.sticker-wrapper')[0].dataset.id;
 			const updatedStickers = stickers.filter(s => s.id !== parseInt(id));
-			localStorage.setItem("stickers", JSON.stringify(updatedStickers));
+			updateSticker(updatedStickers);
 			$(e.target).closest('.sticker-wrapper').remove();
 		}
 	}
 	let saveSticker = (e) => {
 		let title = _.trim(e.target.value.replace(/[\n\t]/g, ''));
-		let id = parseInt(e.target.dataset.id);
+		let id = $(e.target).closest('.sticker-wrapper')[0].dataset.id;
+		id = parseInt(id);
 		if(!id) {
 			id = parseInt(Date.now());
-			let sticker = new Sticker(title, "default", id);
+			let sticker = new Sticker(title, "life", id);
 			e.target.dataset.id = id;
 			stickers.push(sticker);
 		} else {
@@ -45,7 +50,7 @@ let StickerWall = () => {
 				if(sticker.id === id){sticker.title = title}
 			});
 		}
-		localStorage.setItem("stickers", JSON.stringify(stickers));
+		updateSticker(stickers);
 	}
 
 	let onKeydownHandler = (e) => {
@@ -58,14 +63,33 @@ let StickerWall = () => {
 		}
 	}
 
+
+
+	let showTagBox = (e) => {
+		$('.tags-wrapper').show();
+		let id = $(e.target).closest('.sticker-wrapper')[0].dataset.id;
+		$('.tags-wrapper')[0].dataset["id"] = id;
+	}
+
+	let changeTag = (e) => {
+		let id = $('.tags-wrapper')[0].dataset.id;
+		_.forEach(stickers, (sticker) => {
+			if(sticker.id === parseInt(id)){sticker.tag = e.target.innerText }
+		});
+		updateSticker(stickers);
+		$('.tags-wrapper').hide();
+	}
+
 	initStickerListDom();
 
 	$('#new_sticker').on('click', addSticker);
 	$('.delete').on('click', deleteSticker);
 
 	$('body').on('keydown', onKeydownHandler);
-	//$('body').on('keydown', '.sticker', onKeydownHandler);
 	$('body').on('blur', '.sticker', saveSticker);
+
+	$('body').on('click', '.edit-tag', showTagBox);
+	$('body').on('click', '.tag', changeTag);
 
 };
 
