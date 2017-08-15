@@ -1,7 +1,8 @@
 @import 'reset';
+@import 'font';
 
 body {
-	background: url(../../src/img/bg.jpg) no-repeat;
+	background: url(/src/img/bg.jpg) no-repeat;
 	font-family: "Helvetica Neue",sans-serif;
 	background-size: cover;
 	color: white;
@@ -29,23 +30,10 @@ body {
 }
 .sticker-wrapper {
 	position: relative;
-	.delete {
-		position: absolute;
-		top: 8px;
-		right: 5px;
-		width: 20px;
-		height: 20px;
-		border-radius: 50%;
-		background-color: #fd5757;
-		font-size: 30px;
-		line-height: 16px;
-		text-align: center;
-		cursor: pointer;
-		opacity: 0;
-		transition: 0.5s all ease;
-	}
-	&:hover .delete {
-		opacity: 1;
+	margin: 14px 10px;
+	overflow: hidden;
+	&:hover .actions{
+		bottom: 3px;
 	}
 }
 .sticker {
@@ -55,14 +43,42 @@ body {
 	width: 118px;
 	color: #a21da2;
 	line-height: 1;
-	margin: 14px 10px;
 	min-height: 80px;
 	font-size: 20px;
 	overflow-x: hidden;
 	overflow-y: auto;
+	font-size: 14px;
+	line-height: 20px;
+	resize: none;
 }
 .sticker--add {
 	font-size: 80px;
 	text-align: center;
-	padding-bottom: 21px;
+	line-height: 60px;
+	&:hover {
+		box-shadow: 1px 1px 1px 2px #a21da2;
+		background-color: #ffefd9;
+	}
+}
+
+.actions {
+	position: absolute;
+
+	bottom: -30px;
+	width: 90%;
+	background-color: rgba(162, 29, 162, 0.8);
+	padding: 6px 5%;
+	transition: 0.4s all;
+	display: flex;
+	justify-content: flex-end;
+	cursor: pointer;
+	span {
+		color: #fdeaea;
+	}
+	span:hover {
+		color: #fff;
+	}
+	.icon-bin {
+		margin-left: 10px;
+	}
 }

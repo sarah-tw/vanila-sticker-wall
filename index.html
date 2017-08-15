@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Sarah's Sticker Wall</title>
+	<title>Sticker Wall</title>
 	<link rel="stylesheet" href="./dist/css/main.css">
 
 </head>
@@ -18,8 +18,11 @@
 	</div>
 	<script id="sticker_template"  type="text/x-jQuery-tmpl">
 		 <div class="sticker-wrapper">
-		 	<textarea class="sticker" data-id="<%- id %>" rows="4" cols="50"><%- title %></textarea>
-			<i class="delete" data-id="<%- id %>">-</i>
+		 	<textarea class="sticker" data-id="<%- sticker.id %>"><%- sticker.title %></textarea>
+			<div class="actions">
+				<span class="icon-pencil2"></span>
+				<span class="icon-bin delete" data-id="<%- sticker.id %>"></span>
+			</div>
 		</div>
     </script>
 	<script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js"></script>

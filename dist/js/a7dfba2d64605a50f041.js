@@ -62,10 +62,6 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _sticker = __webpack_require__(5);
-
-	var _sticker2 = _interopRequireDefault(_sticker);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//import Sticker from './sticker';
@@ -74,55 +70,38 @@
 	var StickerWall = function StickerWall() {
 		var stickerTmpl = _lodash2.default.template((0, _jquery2.default)('#sticker_template').html());
 		var stickers = JSON.parse(localStorage.getItem("stickers")) || [];
-
 		var initStickerListDom = function initStickerListDom() {
 			var initHtml = '';
 			_lodash2.default.orderBy(stickers, ['id'], ['desc']).map(function (sticker) {
-				initHtml += stickerTmpl({ sticker: sticker });
+				initHtml += stickerTmpl({ 'title': sticker.title, 'id': sticker.id });
 			});
-			(0, _jquery2.default)('#sticker_list').append(initHtml);
+			(0, _jquery2.default)('#sticker_list').prepend(initHtml);
 		};
 
 		var addSticker = function addSticker() {
-			var sticker = new _sticker2.default("", "default");
-			var newSticker = stickerTmpl({ sticker: sticker });
-			(0, _jquery2.default)('.sticker-wrapper:first-child').after(newSticker);
-			(0, _jquery2.default)('#sticker_list .sticker-wrapper:nth-child(2) .sticker').focus();
-		};
-
-		var deleteSticker = function deleteSticker(e) {
-			if (confirm("Would you like to delete this sticker?")) {
-				var id = parseInt(e.target.dataset.id);
-				var updatedStickers = stickers.filter(function (s) {
-					return s.id !== parseInt(id);
-				});
-				localStorage.setItem("stickers", JSON.stringify(updatedStickers));
-				(0, _jquery2.default)(e.target).closest('.sticker-wrapper').remove();
-			}
-		};
-		var saveSticker = function saveSticker(e) {
-			var title = _lodash2.default.trim(e.target.value.replace(/[\n\t]/g, ''));
-			var id = parseInt(e.target.dataset.id);
-			if (!id) {
-				id = parseInt(Date.now());
-				var sticker = new _sticker2.default(title, "default", id);
-				e.target.dataset.id = id;
-				stickers.push(sticker);
-			} else {
-				_lodash2.default.forEach(stickers, function (sticker) {
-					if (sticker.id === id) {
-						sticker.title = title;
-					}
-				});
-			}
-			localStorage.setItem("stickers", JSON.stringify(stickers));
+			var newSticker = stickerTmpl({ 'title': '', 'id': stickers.length });
+			(0, _jquery2.default)('#sticker_list').prepend(newSticker);
+			(0, _jquery2.default)('#sticker_list .sticker-wrapper:first-child .sticker').focus();
 		};
 
 		var onKeydownHandler = function onKeydownHandler(e) {
-			if (e.key == 'Enter' && (0, _jquery2.default)(e.target).hasClass('sticker')) {
+			if (e.which == 13) {
 				e.preventDefault();
-				(0, _jquery2.default)(e.target).blur(); // blur will trigger save;
-			} else if (e.shiftKey && e.key === 'N') {
+				var title = _lodash2.default.trim(e.target.value.replace(/[\n\t]/g, ''));
+				var id = parseInt(e.target.dataset.id);
+				var currentSticker = _lodash2.default.filter(stickers, { id: id });
+				if (_lodash2.default.isEmpty(currentSticker)) {
+					stickers.push({ id: stickers.length, title: title });
+				} else {
+					_lodash2.default.forEach(stickers, function (sticker) {
+						if (sticker.id === id) {
+							sticker['title'] = title;
+						}
+					});
+				}
+				localStorage.setItem("stickers", JSON.stringify(stickers));
+				(0, _jquery2.default)(e.target).blur();
+			} else if (e.shiftKey && e.which === 78) {
 				e.preventDefault();
 				addSticker();
 			}
@@ -131,11 +110,9 @@
 		initStickerListDom();
 
 		(0, _jquery2.default)('#new_sticker').on('click', addSticker);
-		(0, _jquery2.default)('.delete').on('click', deleteSticker);
 
+		(0, _jquery2.default)('body').on('keydown', '.sticker', onKeydownHandler);
 		(0, _jquery2.default)('body').on('keydown', onKeydownHandler);
-		//$('body').on('keydown', '.sticker', onKeydownHandler);
-		(0, _jquery2.default)('body').on('blur', '.sticker', saveSticker);
 	};
 
 	StickerWall();
@@ -27512,21 +27489,11 @@
 
 	"use strict";
 
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var Sticker = function Sticker(title, tag, id) {
+	var Sticker = function Sticker() {
 		_classCallCheck(this, Sticker);
-
-		this.title = title;
-		this.tag = tag;
-		this.id = id;
 	};
-
-	exports.default = Sticker;
 
 /***/ })
 /******/ ]);
