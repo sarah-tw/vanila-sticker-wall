@@ -6,22 +6,19 @@ import Sticker from './sticker';
 
 
 let StickerWall = () => {
-	const stickerTmpl = _.template($('#sticker_template').html());
+	const stickersTmpl = _.template($('#stickers_template').html());
 	let stickers = JSON.parse(localStorage.getItem("stickers")) || [];
 	
-	let initStickerListDom = () => {
-		let initHtml = '';
-		_.orderBy(stickers, ['id'], ['desc']).map((sticker) => {
-			initHtml += stickerTmpl({sticker: sticker});
-		})
-		$('#sticker_list').append(initHtml);
+	let renderStickers = () => {
+		let initHtml = stickersTmpl({stickers: stickers});
+		$('#sticker_list').html(initHtml);
 	}
 
 	let addSticker = () => {
 		let sticker = new Sticker("", "life");
-		let newSticker = stickerTmpl({sticker: sticker});
-		$('.sticker-wrapper:first-child').after(newSticker);
-		$('#sticker_list .sticker-wrapper:nth-child(2) .sticker').focus();
+		let newSticker = stickersTmpl({stickers: [sticker]});
+		$('#sticker_list').prepend(newSticker);
+		$('#sticker_list .sticker-wrapper:first-child .sticker').focus();
 	}
 
 	let updateSticker = (stickers) => {
@@ -78,9 +75,10 @@ let StickerWall = () => {
 		});
 		updateSticker(stickers);
 		$('.tags-wrapper').hide();
+		renderStickers();
 	}
 
-	initStickerListDom();
+	renderStickers();
 
 	$('#new_sticker').on('click', addSticker);
 	$('.delete').on('click', deleteSticker);

@@ -72,22 +72,19 @@
 
 
 	var StickerWall = function StickerWall() {
-		var stickerTmpl = _lodash2.default.template((0, _jquery2.default)('#sticker_template').html());
+		var stickersTmpl = _lodash2.default.template((0, _jquery2.default)('#stickers_template').html());
 		var stickers = JSON.parse(localStorage.getItem("stickers")) || [];
 
-		var initStickerListDom = function initStickerListDom() {
-			var initHtml = '';
-			_lodash2.default.orderBy(stickers, ['id'], ['desc']).map(function (sticker) {
-				initHtml += stickerTmpl({ sticker: sticker });
-			});
-			(0, _jquery2.default)('#sticker_list').append(initHtml);
+		var renderStickers = function renderStickers() {
+			var initHtml = stickersTmpl({ stickers: stickers });
+			(0, _jquery2.default)('#sticker_list').html(initHtml);
 		};
 
 		var addSticker = function addSticker() {
 			var sticker = new _sticker2.default("", "life");
-			var newSticker = stickerTmpl({ sticker: sticker });
-			(0, _jquery2.default)('.sticker-wrapper:first-child').after(newSticker);
-			(0, _jquery2.default)('#sticker_list .sticker-wrapper:nth-child(2) .sticker').focus();
+			var newSticker = stickersTmpl({ stickers: [sticker] });
+			(0, _jquery2.default)('#sticker_list').prepend(newSticker);
+			(0, _jquery2.default)('#sticker_list .sticker-wrapper:first-child .sticker').focus();
 		};
 
 		var updateSticker = function updateSticker(stickers) {
@@ -148,9 +145,10 @@
 			});
 			updateSticker(stickers);
 			(0, _jquery2.default)('.tags-wrapper').hide();
+			renderStickers();
 		};
 
-		initStickerListDom();
+		renderStickers();
 
 		(0, _jquery2.default)('#new_sticker').on('click', addSticker);
 		(0, _jquery2.default)('.delete').on('click', deleteSticker);

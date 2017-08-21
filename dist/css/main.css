@@ -67,12 +67,24 @@ body {
   .sticker-wrapper:hover .actions {
     bottom: 3px; }
 
+.sticker-wrapper.life .sticker {
+  background-color: #f04e98; }
+
+.sticker-wrapper.work .sticker {
+  background-color: #319b42; }
+
+.sticker-wrapper.outdoor .sticker {
+  background-color: #f0bf9b; }
+
+.sticker-wrapper.party .sticker {
+  background-color: #77c5d5; }
+
 .sticker {
   cursor: pointer;
   background-color: antiquewhite;
   padding: 20px;
   width: 118px;
-  color: #a21da2;
+  color: #222;
   line-height: 1;
   min-height: 80px;
   font-size: 20px;
@@ -100,7 +112,7 @@ body {
   position: absolute;
   bottom: -36px;
   width: 90%;
-  background-color: rgba(162, 29, 162, 0.8);
+  background-color: rgba(0, 0, 0, 0.7);
   padding: 6px 5%;
   transition: 0.4s all;
   display: flex;
@@ -136,6 +148,7 @@ body {
   .tags-wrapper .tags {
     position: fixed;
     left: 50%;
+    top: 30%;
     transform: translateX(-50%);
     min-height: 100px;
     padding: 20px;
