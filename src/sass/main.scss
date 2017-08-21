@@ -3,12 +3,15 @@
 $pink: #f04e98;
 $black: #000;
 $green: #319b42;
+$skyBlue: #77c5d5;
 $lightGreen: #a9c47f;
-$lightPink: #f0bf9b;
+$lightYellow: #abad23;
 $orange: #f68d2e;
+$tags: (life: $skyBlue, work: $green, outdoor:$lightYellow, party:$orange, other:$lightGreen);
 
 body {
-	background: url(../../src/img/bg.jpg) no-repeat;
+	//background: url(../../src/img/bg.jpg) no-repeat;
+	background-color: #fefefe;
 	font-family: "Helvetica Neue",sans-serif;
 	background-size: cover;
 	color: white;
@@ -35,36 +38,22 @@ header {
 	}
 }
 
-.tag.life {
-	color: $pink;
+@each $tag, $color in $tags {
+	.tag.#{$tag} {
+		color: $color;
+		&:hover {
+			border-color: $color;
+		}
+		&.active {
+			background-color: $color;
+			color: #eee;
+		}
+	}
+	.sticker-wrapper.#{$tag} .sticker {
+		background-color: $color;
+	}
 }
-.tag.work {
-	color: $green;
-}
-.tag.outdoor {
-	color: $lightPink;
-}
-.tag.party {
-	color: $orange;
-}
-.tag.other {
-	color: $lightGreen;
-}
-.sticker-wrapper.life .sticker {
-	background-color: $pink;
-}
-.sticker-wrapper.work .sticker {
-	background-color: $green;
-}
-.sticker-wrapper.outdoor .sticker {
-	background-color: $lightPink;
-}
-.sticker-wrapper.party .sticker {
-	background-color: $orange;
-}
-.sticker-wrapper.other .sticker {
-	background-color: $lightGreen;
-}
+
 .sticker {
 	cursor: pointer;
 	background-color: antiquewhite;
@@ -152,45 +141,21 @@ header {
 		min-height: 100px;
 		padding: 20px;
 		background-color: white;
-		p {
+		.choose-tag-desc {
 			color: #333;
 			padding: 5px;
 			margin-top: 0;
 		}		
 	}
-	.tag {
-		border: 1px solid #e8cece;
-	    border-radius: 3px;
-	    padding: 10px;
-	    background-color: grey;
-	    color: #fdeaea;
-	    display: inline-block;
-	    font-size: 16px;
-		margin: 5px;
-		cursor: pointer;
-	}
 }
-.tag-filter {
-	ul {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		li {
-			display: inline-block;
-			margin: 4px 8px;
-			padding: 4px 8px;
-			border: 1px solid #aaa;
-			border-radius: 3px;
-			cursor: pointer;
-			transition: 0.3s all;
-			text-transform: lowercase;
-			&:hover {
-				border-color: #a21da2;
-			}
-			&.active {
-				background-color: #a21da2;
-				color: #eee;
-			}
-		}
-	}
+.tags .tag {
+	display: inline-block;
+	margin: 4px 8px;
+	padding: 4px 8px;
+	border: 1px solid #aaa;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: 0.3s all;
+	text-transform: lowercase;
+	
 }

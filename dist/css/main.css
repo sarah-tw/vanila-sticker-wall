@@ -2,6 +2,11 @@ h1, h2, h3 {
   margin: 0;
   padding: 0; }
 
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
 @font-face {
   font-family: 'icomoon';
   src: url("../../src/fonts/icomoon.eot?h0td1k");
@@ -29,7 +34,7 @@ h1, h2, h3 {
   content: "\e9ac"; }
 
 body {
-  background: url(../../src/img/bg.jpg) no-repeat;
+  background-color: #fefefe;
   font-family: "Helvetica Neue",sans-serif;
   background-size: cover;
   color: white;
@@ -53,31 +58,56 @@ header {
     bottom: 3px; }
 
 .tag.life {
-  color: #f04e98; }
+  color: #77c5d5; }
+  .tag.life:hover {
+    border-color: #77c5d5; }
+  .tag.life.active {
+    background-color: #77c5d5;
+    color: #eee; }
+
+.sticker-wrapper.life .sticker {
+  background-color: #77c5d5; }
 
 .tag.work {
   color: #319b42; }
-
-.tag.outdoor {
-  color: #f0bf9b; }
-
-.tag.party {
-  color: #f68d2e; }
-
-.tag.other {
-  color: #a9c47f; }
-
-.sticker-wrapper.life .sticker {
-  background-color: #f04e98; }
+  .tag.work:hover {
+    border-color: #319b42; }
+  .tag.work.active {
+    background-color: #319b42;
+    color: #eee; }
 
 .sticker-wrapper.work .sticker {
   background-color: #319b42; }
 
+.tag.outdoor {
+  color: #abad23; }
+  .tag.outdoor:hover {
+    border-color: #abad23; }
+  .tag.outdoor.active {
+    background-color: #abad23;
+    color: #eee; }
+
 .sticker-wrapper.outdoor .sticker {
-  background-color: #f0bf9b; }
+  background-color: #abad23; }
+
+.tag.party {
+  color: #f68d2e; }
+  .tag.party:hover {
+    border-color: #f68d2e; }
+  .tag.party.active {
+    background-color: #f68d2e;
+    color: #eee; }
 
 .sticker-wrapper.party .sticker {
   background-color: #f68d2e; }
+
+.tag.other {
+  color: #a9c47f; }
+  .tag.other:hover {
+    border-color: #a9c47f; }
+  .tag.other.active {
+    background-color: #a9c47f;
+    color: #eee; }
 
 .sticker-wrapper.other .sticker {
   background-color: #a9c47f; }
@@ -161,36 +191,17 @@ header {
     min-height: 100px;
     padding: 20px;
     background-color: white; }
-    .tags-wrapper .tags p {
+    .tags-wrapper .tags .choose-tag-desc {
       color: #333;
       padding: 5px;
       margin-top: 0; }
-  .tags-wrapper .tag {
-    border: 1px solid #e8cece;
-    border-radius: 3px;
-    padding: 10px;
-    background-color: grey;
-    color: #fdeaea;
-    display: inline-block;
-    font-size: 16px;
-    margin: 5px;
-    cursor: pointer; }
 
-.tag-filter ul {
-  list-style: none;
-  padding: 0;
-  margin: 0; }
-  .tag-filter ul li {
-    display: inline-block;
-    margin: 4px 8px;
-    padding: 4px 8px;
-    border: 1px solid #aaa;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: 0.3s all;
-    text-transform: lowercase; }
-    .tag-filter ul li:hover {
-      border-color: #a21da2; }
-    .tag-filter ul li.active {
-      background-color: #a21da2;
-      color: #eee; }
+.tags .tag {
+  display: inline-block;
+  margin: 4px 8px;
+  padding: 4px 8px;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.3s all;
+  text-transform: lowercase; }
