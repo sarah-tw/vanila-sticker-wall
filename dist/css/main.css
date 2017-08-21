@@ -38,37 +38,34 @@ body {
 header {
   padding: 10px 5%;
   margin-bottom: 20px;
-  background-color: antiquewhite;
+  background-color: #000;
   display: flex;
-  justify-content: space-between;
-  color: #a21da2; }
+  justify-content: space-between; }
   header .page-title {
-    color: #a21da2; }
-
-.stickers {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1080px;
-  margin: 0 auto; }
-  @media screen and (min-width: 360px) and (max-width: 539px) {
-    .stickers {
-      max-width: 360px; } }
-  @media screen and (min-width: 540px) and (max-width: 719px) {
-    .stickers {
-      max-width: 540px; } }
-  @media screen and (min-width: 720px) and (max-width: 899px) {
-    .stickers {
-      max-width: 720px; } }
-  @media screen and (min-width: 900px) and (max-width: 1079px) {
-    .stickers {
-      max-width: 900px; } }
+    color: #f04e98; }
 
 .sticker-wrapper {
   position: relative;
   margin: 14px 10px;
-  overflow: hidden; }
+  overflow: hidden;
+  float: left; }
   .sticker-wrapper:hover .actions {
     bottom: 3px; }
+
+.tag.life {
+  color: #f04e98; }
+
+.tag.work {
+  color: #319b42; }
+
+.tag.outdoor {
+  color: #f0bf9b; }
+
+.tag.party {
+  color: #f68d2e; }
+
+.tag.other {
+  color: #a9c47f; }
 
 .sticker-wrapper.life .sticker {
   background-color: #f04e98; }
@@ -80,7 +77,10 @@ header {
   background-color: #f0bf9b; }
 
 .sticker-wrapper.party .sticker {
-  background-color: #77c5d5; }
+  background-color: #f68d2e; }
+
+.sticker-wrapper.other .sticker {
+  background-color: #a9c47f; }
 
 .sticker {
   cursor: pointer;
@@ -99,7 +99,8 @@ header {
 
 .sticker--add {
   text-align: center;
-  color: #444; }
+  color: #444;
+  width: 120px; }
   .sticker--add:hover {
     box-shadow: 0 0 1px 2px #a21da2 inset;
     background-color: #ffefd9; }

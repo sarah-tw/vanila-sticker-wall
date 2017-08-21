@@ -1,5 +1,11 @@
 @import 'reset';
 @import 'font';
+$pink: #f04e98;
+$black: #000;
+$green: #319b42;
+$lightGreen: #a9c47f;
+$lightPink: #f0bf9b;
+$orange: #f68d2e;
 
 body {
 	background: url(../../src/img/bg.jpg) no-repeat;
@@ -11,46 +17,53 @@ body {
 header {
 	padding: 10px 5%;
 	margin-bottom: 20px;
-	background-color: antiquewhite;
+	background-color: $black;
 	display: flex;
 	justify-content: space-between;
-	color: #a21da2;
 	.page-title {
-		color: #a21da2;
+		color: $pink;
 	}
 }
 
-
-.stickers {
-	display: flex;
-	flex-wrap: wrap;
-	max-width: 1080px;
-	margin: 0 auto;
-	@for $i from 2 through 5 {
-		@media screen and (min-width: $i * 180px) and (max-width: ($i + 1) * 180px - 1)  {
-			max-width: $i * 180px;
-		}
-	}
-}
 .sticker-wrapper {
 	position: relative;
 	margin: 14px 10px;
 	overflow: hidden;
+	float: left;
 	&:hover .actions{
 		bottom: 3px;
 	}
 }
+
+.tag.life {
+	color: $pink;
+}
+.tag.work {
+	color: $green;
+}
+.tag.outdoor {
+	color: $lightPink;
+}
+.tag.party {
+	color: $orange;
+}
+.tag.other {
+	color: $lightGreen;
+}
 .sticker-wrapper.life .sticker {
-	background-color: #f04e98;
+	background-color: $pink;
 }
 .sticker-wrapper.work .sticker {
-	background-color: #319b42;
+	background-color: $green;
 }
 .sticker-wrapper.outdoor .sticker {
-	background-color: #f0bf9b;
+	background-color: $lightPink;
 }
 .sticker-wrapper.party .sticker {
-	background-color: #77c5d5;
+	background-color: $orange;
+}
+.sticker-wrapper.other .sticker {
+	background-color: $lightGreen;
 }
 .sticker {
 	cursor: pointer;
@@ -70,6 +83,7 @@ header {
 .sticker--add {
 	text-align: center;
 	color: #444;
+	width: 120px;
 	&:hover {
 		box-shadow: 0 0 1px 2px #a21da2 inset;
 		background-color: #ffefd9;
