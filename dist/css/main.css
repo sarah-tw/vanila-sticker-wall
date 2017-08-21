@@ -35,12 +35,15 @@ body {
   color: white;
   margin: 0; }
 
-.page-title {
-  text-align: center;
-  padding: 10px 0;
+header {
+  padding: 10px 5%;
   margin-bottom: 20px;
   background-color: antiquewhite;
+  display: flex;
+  justify-content: space-between;
   color: #a21da2; }
+  header .page-title {
+    color: #a21da2; }
 
 .stickers {
   display: flex;
@@ -86,7 +89,7 @@ body {
   width: 118px;
   color: #222;
   line-height: 1;
-  min-height: 80px;
+  min-height: 98px;
   font-size: 20px;
   overflow-x: hidden;
   overflow-y: auto;
@@ -95,12 +98,16 @@ body {
   resize: none; }
 
 .sticker--add {
-  font-size: 80px;
   text-align: center;
-  line-height: 60px; }
+  color: #444; }
   .sticker--add:hover {
     box-shadow: 0 0 1px 2px #a21da2 inset;
     background-color: #ffefd9; }
+  .sticker--add .icon-add {
+    font-size: 50px;
+    line-height: 50px; }
+  .sticker--add .desc {
+    line-height: 1; }
 
 .edit-tag {
   border: 1px solid #e8cece;
@@ -167,3 +174,22 @@ body {
     font-size: 16px;
     margin: 5px;
     cursor: pointer; }
+
+.tag-filter ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+  .tag-filter ul li {
+    display: inline-block;
+    margin: 4px 8px;
+    padding: 4px 8px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.3s all;
+    text-transform: lowercase; }
+    .tag-filter ul li:hover {
+      border-color: #a21da2; }
+    .tag-filter ul li.active {
+      background-color: #a21da2;
+      color: #eee; }

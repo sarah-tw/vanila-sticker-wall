@@ -8,15 +8,26 @@
 
 </head>
 <body>
-	<h1 class="page-title">Sarah's Sticker Wall</h1>
-		<div class="sticker-wrapper">
-			<div class="sticker sticker--add" id="new_sticker">
-				+
-			</div>
+	<header>
+		<h1 class="page-title">Sticker Wall</h1>
+		<nav class="tag-filter">
+			<ul>
+				<li class="tag">Life</li>
+				<li class="tag">Work</li>
+				<li class="tag">Party</li>
+				<li class="tag">Outdoor</li>
+				<li class="tag">Other</li>
+			</ul>
+		</nav>
+	</header>
+	
+	<div class="sticker-wrapper">
+		<div class="sticker sticker--add" id="new_sticker">
+			<span class="icon-add">+</span>
+			<p>Add Sticker</p>
 		</div>
-	<div class="stickers" id="sticker_list">
-
-	</div>
+	</div>	
+	<div class="stickers" id="sticker_list"></div>
 	<div class="tags-wrapper">
 		<ul class="tags">
 			<p>Please choose a tag for your sticker</p>

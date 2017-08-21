@@ -75,7 +75,7 @@
 		var stickersTmpl = _lodash2.default.template((0, _jquery2.default)('#stickers_template').html());
 		var stickers = JSON.parse(localStorage.getItem("stickers")) || [];
 
-		var renderStickers = function renderStickers() {
+		var renderStickers = function renderStickers(stickers) {
 			var initHtml = stickersTmpl({ stickers: stickers });
 			(0, _jquery2.default)('#sticker_list').html(initHtml);
 		};
@@ -140,15 +140,31 @@
 			var id = (0, _jquery2.default)('.tags-wrapper')[0].dataset.id;
 			_lodash2.default.forEach(stickers, function (sticker) {
 				if (sticker.id === parseInt(id)) {
-					sticker.tag = e.target.innerText;
+					sticker.tag = e.target.innerText.toLowerCase();
 				}
 			});
-			updateSticker(stickers);
 			(0, _jquery2.default)('.tags-wrapper').hide();
-			renderStickers();
+			updateSticker(stickers);
+			renderStickers(stickers);
 		};
 
-		renderStickers();
+		var filterByTag = function filterByTag(e) {
+			var isCurrentActive = (0, _jquery2.default)(e.target).hasClass('active');
+			var filteredStickers = void 0;
+			if (isCurrentActive) {
+				filteredStickers = stickers;
+			} else {
+				(0, _jquery2.default)('.tag-filter .tag').removeClass('active');
+				var tag = (0, _jquery2.default)(e.target).text().toLowerCase();
+				filteredStickers = _lodash2.default.filter(stickers, function (sticker) {
+					return sticker.tag === tag;
+				});
+			}
+			(0, _jquery2.default)(e.target).toggleClass('active');
+			renderStickers(filteredStickers);
+		};
+
+		renderStickers(stickers);
 
 		(0, _jquery2.default)('#new_sticker').on('click', addSticker);
 		(0, _jquery2.default)('.delete').on('click', deleteSticker);
@@ -158,6 +174,8 @@
 
 		(0, _jquery2.default)('body').on('click', '.edit-tag', showTagBox);
 		(0, _jquery2.default)('body').on('click', '.tag', changeTag);
+
+		(0, _jquery2.default)('body').on('click', '.tag-filter .tag', filterByTag);
 	};
 
 	StickerWall();

@@ -9,7 +9,7 @@ let StickerWall = () => {
 	const stickersTmpl = _.template($('#stickers_template').html());
 	let stickers = JSON.parse(localStorage.getItem("stickers")) || [];
 	
-	let renderStickers = () => {
+	let renderStickers = (stickers) => {
 		let initHtml = stickersTmpl({stickers: stickers});
 		$('#sticker_list').html(initHtml);
 	}
@@ -71,14 +71,28 @@ let StickerWall = () => {
 	let changeTag = (e) => {
 		let id = $('.tags-wrapper')[0].dataset.id;
 		_.forEach(stickers, (sticker) => {
-			if(sticker.id === parseInt(id)){sticker.tag = e.target.innerText }
+			if(sticker.id === parseInt(id)){sticker.tag = e.target.innerText.toLowerCase() }
 		});
-		updateSticker(stickers);
 		$('.tags-wrapper').hide();
-		renderStickers();
+		updateSticker(stickers);
+		renderStickers(stickers);
 	}
 
-	renderStickers();
+	let filterByTag = (e) => {
+		const isCurrentActive = $(e.target).hasClass('active');
+		let filteredStickers;
+		if(isCurrentActive) {
+			filteredStickers = stickers;
+		}else {
+			$('.tag-filter .tag').removeClass('active');
+			const tag = $(e.target).text().toLowerCase();
+			filteredStickers = _.filter(stickers, sticker => sticker.tag === tag)
+		}
+		$(e.target).toggleClass('active');
+		renderStickers(filteredStickers);
+	}
+
+	renderStickers(stickers);
 
 	$('#new_sticker').on('click', addSticker);
 	$('.delete').on('click', deleteSticker);
@@ -88,6 +102,8 @@ let StickerWall = () => {
 
 	$('body').on('click', '.edit-tag', showTagBox);
 	$('body').on('click', '.tag', changeTag);
+
+	$('body').on('click', '.tag-filter .tag', filterByTag);
 
 };
 
