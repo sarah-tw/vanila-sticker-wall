@@ -63,14 +63,6 @@ header {
       header .tags .tag {
         margin: 4px; } }
 
-.sticker-wrapper {
-  position: relative;
-  margin: 14px 10px;
-  overflow: hidden;
-  float: left; }
-  .sticker-wrapper:hover .actions {
-    bottom: 3px; }
-
 .tag.life {
   color: #77c5d5; }
   .tag.life:hover {
@@ -148,6 +140,17 @@ header {
     .main-content {
       max-width: 1260px; } }
 
+.sticker-wrapper {
+  position: relative;
+  margin: 14px 10px;
+  overflow: hidden;
+  float: left; }
+  .sticker-wrapper:hover .actions {
+    bottom: 3px; }
+  @media screen and (max-width: 360px) {
+    .sticker-wrapper {
+      float: none; } }
+
 .sticker {
   cursor: pointer;
   background-color: antiquewhite;
@@ -163,12 +166,15 @@ header {
   line-height: 20px;
   resize: none;
   border: none; }
+  @media screen and (max-width: 360px) {
+    .sticker {
+      width: calc(100% - 40px); } }
 
 .sticker--add {
   text-align: center;
   color: #444; }
   .sticker--add:hover {
-    box-shadow: 0 0 1px 2px #a21da2 inset;
+    box-shadow: 0 0 1px 2px #f04e98 inset;
     background-color: #ffefd9; }
   .sticker--add .icon-add {
     font-size: 50px;
@@ -180,7 +186,8 @@ header {
   border: 1px solid #e8cece;
   border-radius: 3px;
   padding: 2px 6px;
-  color: #fdeaea; }
+  color: #fdeaea;
+  font-size: 14px; }
 
 .actions {
   position: absolute;
@@ -203,13 +210,7 @@ header {
     font-size: 12px; }
 
 .tags-wrapper {
-  margin: 0;
-  min-width: 100px;
-  list-style: none;
-  padding: 0;
-  display: inline-block;
   font-size: 14px;
-  background-color: #fff;
   display: none; }
   .tags-wrapper:before {
     content: '';
@@ -226,7 +227,11 @@ header {
     transform: translateX(-50%);
     min-height: 100px;
     padding: 20px;
-    background-color: white; }
+    background-color: white;
+    width: 350px; }
+    @media screen and (max-width: 450px) {
+      .tags-wrapper .tags {
+        width: 300px; } }
     .tags-wrapper .tags .choose-tag-desc {
       color: #333;
       padding: 5px;

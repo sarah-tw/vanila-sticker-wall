@@ -44,16 +44,6 @@ header {
 	}
 }
 
-.sticker-wrapper {
-	position: relative;
-	margin: 14px 10px;
-	overflow: hidden;
-	float: left;
-	&:hover .actions{
-		bottom: 3px;
-	}
-}
-
 @each $tag, $color in $tags {
 	.tag.#{$tag} {
 		color: $color;
@@ -80,6 +70,20 @@ header {
  	}
 
 }
+
+.sticker-wrapper {
+	position: relative;
+	margin: 14px 10px;
+	overflow: hidden;
+	float: left;
+	&:hover .actions{
+		bottom: 3px;
+	}
+	@media screen and (max-width: 360px){
+		float: none;
+	}	
+}
+
 .sticker {
 	cursor: pointer;
 	background-color: antiquewhite;
@@ -95,12 +99,15 @@ header {
 	line-height: 20px;
 	resize: none;
 	border: none;
+	@media screen and (max-width: 360px){
+		width: calc(100% - 40px);
+	}
 }
 .sticker--add {
 	text-align: center;
 	color: #444;
 	&:hover {
-		box-shadow: 0 0 1px 2px #a21da2 inset;
+		box-shadow: 0 0 1px 2px $pink inset;
 		background-color: #ffefd9;
 	}
 	.icon-add {
@@ -116,6 +123,7 @@ header {
     border-radius: 3px;
     padding: 2px 6px;
     color: #fdeaea;
+    font-size: 14px;
 }
 .actions {
 	position: absolute;
@@ -142,13 +150,7 @@ header {
 }
 
 .tags-wrapper {
-	margin: 0;
-	min-width: 100px;
-	list-style: none;
-	padding: 0;
-	display: inline-block;
 	font-size: 14px;
-	background-color: #fff;
 	display: none;
 	&:before {
 		content: '';
@@ -167,6 +169,10 @@ header {
 		min-height: 100px;
 		padding: 20px;
 		background-color: white;
+		width: 350px;
+		@media screen and (max-width: 450px) {
+			width: 300px;
+		}
 		.choose-tag-desc {
 			color: #333;
 			padding: 5px;
