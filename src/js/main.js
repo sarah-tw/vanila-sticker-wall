@@ -60,8 +60,6 @@ let StickerWall = () => {
 		}
 	}
 
-
-
 	let showTagBox = (e) => {
 		$('.tags-wrapper').show();
 		let id = $(e.target).closest('.sticker-wrapper')[0].dataset.id;
