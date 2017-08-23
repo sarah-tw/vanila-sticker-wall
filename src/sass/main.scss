@@ -64,6 +64,13 @@ header {
 	.sticker-wrapper.#{$tag} .sticker {
 		background-color: $color;
 	}
+	.tags-wrapper .tag.#{$tag} {
+		border-bottom: 1px solid $color;
+		&:hover {
+			background-color: $color;
+			color: white;
+		}
+	}
 }
 
 .main-content {
@@ -82,7 +89,8 @@ header {
 	margin: 14px 10px;
 	overflow: hidden;
 	float: left;
-	&:hover .actions{
+	&:hover .actions,
+	&.active .actions{
 		bottom: 3px;
 	}
 	@media screen and (max-width: 360px){
@@ -158,35 +166,24 @@ header {
 .tags-wrapper {
 	font-size: 14px;
 	display: none;
-	&:before {
-		content: '';
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		right: 0;
-		left: 0;
-		background-color: rgba(0,0,0,0.6);
+	position: absolute;
+	transform: translateX(-50%);
+	background-color: black;
+	width: 160px;
+	@media screen and (max-width: 450px) {
+		width: 300px;
 	}
-	.tags {
-		position: fixed;
-		left: 50%;
-		top: 30%;
-		transform: translateX(-50%);
-		min-height: 100px;
-		padding: 20px;
-		background-color: white;
-		width: 350px;
-		@media screen and (max-width: 450px) {
-			width: 300px;
-		}
-		.choose-tag-desc {
-			color: #333;
-			padding: 5px;
-			margin-top: 0;
-		}		
+	.choose-tag-desc {
+		color: #333;
+		padding: 5px;
+		margin-top: 0;
 	}
+	.tag {
+		padding: 6px;
+		border-radius: 3px;
+	}	
 }
-.tags .tag {
+header .tags .tag {
 	display: inline-block;
 	margin: 4px 8px;
 	padding: 2px 8px;

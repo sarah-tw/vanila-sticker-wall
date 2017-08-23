@@ -61,8 +61,16 @@ let StickerWall = () => {
 	}
 
 	let showTagBox = (e) => {
-		$('.tags-wrapper').show();
-		let id = $(e.target).closest('.sticker-wrapper')[0].dataset.id;
+		let parentElement = $(e.target).closest('.sticker-wrapper');
+		let isCurrentActive = parentElement.hasClass('active');
+		if(!isCurrentActive){
+			$(".sticker-wrapper").removeClass('active');
+		}
+		let p = parentElement.position();
+		let styles = {top: p.top + 156, left: p.left + 90}
+		$('.tags-wrapper').css(styles).toggle(!isCurrentActive);
+		parentElement.toggleClass('active');
+		let id = parentElement[0].dataset.id;
 		$('.tags-wrapper')[0].dataset["id"] = id;
 	}
 

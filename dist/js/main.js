@@ -131,8 +131,16 @@
 		};
 
 		var showTagBox = function showTagBox(e) {
-			(0, _jquery2.default)('.tags-wrapper').show();
-			var id = (0, _jquery2.default)(e.target).closest('.sticker-wrapper')[0].dataset.id;
+			var parentElement = (0, _jquery2.default)(e.target).closest('.sticker-wrapper');
+			var isCurrentActive = parentElement.hasClass('active');
+			if (!isCurrentActive) {
+				(0, _jquery2.default)(".sticker-wrapper").removeClass('active');
+			}
+			var p = parentElement.position();
+			var styles = { top: p.top + 156, left: p.left + 90 };
+			(0, _jquery2.default)('.tags-wrapper').css(styles).toggle(!isCurrentActive);
+			parentElement.toggleClass('active');
+			var id = parentElement[0].dataset.id;
 			(0, _jquery2.default)('.tags-wrapper')[0].dataset["id"] = id;
 		};
 
