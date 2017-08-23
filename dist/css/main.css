@@ -247,11 +247,13 @@ header {
 
 .tags-wrapper {
   font-size: 14px;
-  display: none;
   position: absolute;
   transform: translateX(-50%);
   background-color: black;
-  width: 160px; }
+  width: 160px;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s; }
   @media screen and (max-width: 450px) {
     .tags-wrapper {
       width: 300px; } }
@@ -260,7 +262,7 @@ header {
     padding: 5px;
     margin-top: 0; }
   .tags-wrapper .tag {
-    padding: 6px;
+    padding: 7px;
     border-radius: 3px; }
 
 header .tags .tag {

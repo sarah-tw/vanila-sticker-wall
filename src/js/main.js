@@ -63,13 +63,21 @@ let StickerWall = () => {
 	let showTagBox = (e) => {
 		let parentElement = $(e.target).closest('.sticker-wrapper');
 		let isCurrentActive = parentElement.hasClass('active');
+		let p = parentElement.position();
+		let styles = {top: p.top + 156, left: p.left + 90, height: '150px'}
+		let isListOpen = $('.tags-wrapper').hasClass('open');
+		if(isListOpen) {
+			$('.tags-wrapper').css('height', '0');
+		}else {
+			$('.tags-wrapper').css(styles);
+		}
+		$('.tags-wrapper').toggleClass('open');
+		
 		if(!isCurrentActive){
 			$(".sticker-wrapper").removeClass('active');
 		}
-		let p = parentElement.position();
-		let styles = {top: p.top + 156, left: p.left + 90}
-		$('.tags-wrapper').css(styles).toggle(!isCurrentActive);
 		parentElement.toggleClass('active');
+
 		let id = parentElement[0].dataset.id;
 		$('.tags-wrapper')[0].dataset["id"] = id;
 	}
@@ -79,7 +87,7 @@ let StickerWall = () => {
 		_.forEach(stickers, (sticker) => {
 			if(sticker.id === parseInt(id)){sticker.tag = e.target.innerText.toLowerCase() }
 		});
-		$('.tags-wrapper').hide();
+		$('.tags-wrapper').removeClass('open').css('height', '0');
 		updateSticker(stickers);
 		renderStickers(stickers);
 	}

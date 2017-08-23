@@ -133,13 +133,21 @@
 		var showTagBox = function showTagBox(e) {
 			var parentElement = (0, _jquery2.default)(e.target).closest('.sticker-wrapper');
 			var isCurrentActive = parentElement.hasClass('active');
+			var p = parentElement.position();
+			var styles = { top: p.top + 156, left: p.left + 90, height: '150px' };
+			var isListOpen = (0, _jquery2.default)('.tags-wrapper').hasClass('open');
+			if (isListOpen) {
+				(0, _jquery2.default)('.tags-wrapper').css('height', '0');
+			} else {
+				(0, _jquery2.default)('.tags-wrapper').css(styles);
+			}
+			(0, _jquery2.default)('.tags-wrapper').toggleClass('open');
+
 			if (!isCurrentActive) {
 				(0, _jquery2.default)(".sticker-wrapper").removeClass('active');
 			}
-			var p = parentElement.position();
-			var styles = { top: p.top + 156, left: p.left + 90 };
-			(0, _jquery2.default)('.tags-wrapper').css(styles).toggle(!isCurrentActive);
 			parentElement.toggleClass('active');
+
 			var id = parentElement[0].dataset.id;
 			(0, _jquery2.default)('.tags-wrapper')[0].dataset["id"] = id;
 		};
@@ -151,7 +159,7 @@
 					sticker.tag = e.target.innerText.toLowerCase();
 				}
 			});
-			(0, _jquery2.default)('.tags-wrapper').hide();
+			(0, _jquery2.default)('.tags-wrapper').removeClass('open').css('height', '0');
 			updateSticker(stickers);
 			renderStickers(stickers);
 		};
