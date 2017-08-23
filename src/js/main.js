@@ -102,7 +102,12 @@ let StickerWall = () => {
 	$('body').on('click', '.tag', changeTag);
 
 	$('body').on('click', '.tag-filter .tag', filterByTag);
-
+	
+	$.ajax({
+		url: "http://wisdom.liyaodong.com/v1/random"
+		}).done((response) => {
+			$('#wisdom_words').html(response.content);
+		})
 };
 
 StickerWall();

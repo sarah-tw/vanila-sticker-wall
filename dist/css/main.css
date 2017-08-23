@@ -38,7 +38,11 @@ body {
   font-family: "Helvetica Neue",sans-serif;
   background-size: cover;
   color: white;
-  margin: 0; }
+  margin: 0;
+  font-family: 'Josefin Sans', sans-serif; }
+
+textarea {
+  font-family: 'Josefin Sans', sans-serif; }
 
 .clearfix:after {
   content: '';
@@ -50,7 +54,8 @@ header {
   margin-bottom: 20px;
   background-color: #000;
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  font-family: 'Indie Flower', cursive; }
   header .page-title {
     color: #f04e98; }
   @media screen and (max-width: 600px) {
@@ -153,7 +158,6 @@ header {
 
 .sticker {
   cursor: pointer;
-  background-color: antiquewhite;
   padding: 20px;
   width: 120px;
   color: #222;
@@ -172,7 +176,8 @@ header {
 
 .sticker--add {
   text-align: center;
-  color: #444; }
+  color: #444;
+  background-color: #f3cfb3; }
   .sticker--add:hover {
     box-shadow: 0 0 1px 2px #f04e98 inset;
     background-color: #ffefd9; }
@@ -191,7 +196,7 @@ header {
 
 .actions {
   position: absolute;
-  bottom: -36px;
+  bottom: -40px;
   width: 90%;
   background-color: rgba(0, 0, 0, 0.7);
   padding: 6px 5%;
@@ -240,25 +245,31 @@ header {
 .tags .tag {
   display: inline-block;
   margin: 4px 8px;
-  padding: 4px 8px;
+  padding: 2px 8px;
   border: 1px solid #aaa;
   border-radius: 3px;
   cursor: pointer;
   transition: 0.3s all;
   text-transform: lowercase; }
 
+.wisdom-words {
+  font-weight: bold; }
+
 footer {
   position: fixed;
-  width: 100%;
+  width: 90%;
   bottom: 0;
+  color: white;
+  text-align: center;
+  padding: 10px 5%;
+  background-color: #f04e98; }
+  footer img {
+    margin-left: 6px;
+    width: 24px; }
+
+.copy-right {
+  margin-top: 8px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #666;
-  text-align: center;
-  padding: 8px 0;
   font-size: 12px;
-  background-color: white; }
-  footer img {
-    margin-left: 10px;
-    width: 24px; }
+  justify-content: center; }

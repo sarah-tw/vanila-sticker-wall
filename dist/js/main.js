@@ -176,6 +176,12 @@
 		(0, _jquery2.default)('body').on('click', '.tag', changeTag);
 
 		(0, _jquery2.default)('body').on('click', '.tag-filter .tag', filterByTag);
+
+		_jquery2.default.ajax({
+			url: "http://wisdom.liyaodong.com/v1/random"
+		}).done(function (response) {
+			(0, _jquery2.default)('#wisdom_words').html(response.content);
+		});
 	};
 
 	StickerWall();

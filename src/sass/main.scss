@@ -7,6 +7,7 @@ $skyBlue: #77c5d5;
 $lightGreen: #a9c47f;
 $lightYellow: #abad23;
 $orange: #f68d2e;
+$default: #f3cfb3;
 $tags: (life: $skyBlue, work: $green, outdoor:$lightYellow, party:$orange, other:$lightGreen);
 
 body {
@@ -16,6 +17,10 @@ body {
 	background-size: cover;
 	color: white;
 	margin: 0;
+	font-family: 'Josefin Sans', sans-serif;
+}
+textarea {
+	font-family: 'Josefin Sans', sans-serif;
 }
 .clearfix:after {
 	content: '';
@@ -28,6 +33,7 @@ header {
 	background-color: $black;
 	display: flex;
 	justify-content: space-between;
+	font-family: 'Indie Flower', cursive;
 	.page-title {
 		color: $pink;
 	}
@@ -86,7 +92,6 @@ header {
 
 .sticker {
 	cursor: pointer;
-	background-color: antiquewhite;
 	padding: 20px;
 	width: 120px;
 	color: #222;
@@ -106,6 +111,7 @@ header {
 .sticker--add {
 	text-align: center;
 	color: #444;
+	background-color: $default;
 	&:hover {
 		box-shadow: 0 0 1px 2px $pink inset;
 		background-color: #ffefd9;
@@ -127,7 +133,7 @@ header {
 }
 .actions {
 	position: absolute;
-	bottom: -36px;
+	bottom: -40px;
 	width: 90%;
 	background-color: rgba(0, 0, 0, 0.7);
 	padding: 6px 5%;
@@ -183,7 +189,7 @@ header {
 .tags .tag {
 	display: inline-block;
 	margin: 4px 8px;
-	padding: 4px 8px;
+	padding: 2px 8px;
 	border: 1px solid #aaa;
 	border-radius: 3px;
 	cursor: pointer;
@@ -191,20 +197,26 @@ header {
 	text-transform: lowercase;
 	
 }
+.wisdom-words {
+	font-weight: bold;
+}
 footer {
 	position: fixed;
-    width: 100%;
+    width: 90%;
     bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666;
+    color: white;
     text-align: center;
-    padding: 8px 0;
-    font-size: 12px;
-    background-color: white;
+    padding: 10px 5%;
+    background-color: $pink;
     img {
-		margin-left: 10px;
+		margin-left: 6px;
 		width: 24px;
     }
+}
+.copy-right {
+	margin-top: 8px;
+	display: flex;
+	align-items: center;
+	font-size: 12px;
+	justify-content: center;
 }
