@@ -72,7 +72,7 @@ let StickerWall = () => {
 			$('.tags-wrapper').css(styles);
 		}
 		$('.tags-wrapper').toggleClass('open');
-		
+
 		if(!isCurrentActive){
 			$(".sticker-wrapper").removeClass('active');
 		}
@@ -120,7 +120,7 @@ let StickerWall = () => {
 	$('body').on('click', '.tag-filter .tag', filterByTag);
 	
 	$.ajax({
-		url: "http://wisdom.liyaodong.com/v1/random"
+		url: "//wisdom.liyaodong.com/v1/random"
 		}).done((response) => {
 			$('#wisdom_words').html(response.content);
 		})
