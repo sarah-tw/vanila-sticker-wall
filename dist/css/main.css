@@ -246,3 +246,19 @@ header {
   cursor: pointer;
   transition: 0.3s all;
   text-transform: lowercase; }
+
+footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 12px;
+  background-color: white; }
+  footer img {
+    margin-left: 10px;
+    width: 24px; }
