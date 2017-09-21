@@ -15,7 +15,6 @@ body {
 	background-color: #fefefe;
 	font-family: "Helvetica Neue",sans-serif;
 	background-size: cover;
-	color: white;
 	margin: 0;
 	font-family: 'Josefin Sans', sans-serif;
 }
@@ -182,7 +181,6 @@ header {
 	}
 	.tag {
 		padding: 7px;
-		border-radius: 3px;
 	}	
 }
 header .tags .tag {
@@ -218,4 +216,11 @@ footer {
 	align-items: center;
 	font-size: 12px;
 	justify-content: center;
+}
+
+.export-json {
+	padding-left: 10px;
+	text-decoration: underline;
+	color: #666;
+	cursor: pointer;
 }

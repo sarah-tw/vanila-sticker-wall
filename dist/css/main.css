@@ -37,7 +37,6 @@ body {
   background-color: #fefefe;
   font-family: "Helvetica Neue",sans-serif;
   background-size: cover;
-  color: white;
   margin: 0;
   font-family: 'Josefin Sans', sans-serif; }
 
@@ -262,8 +261,7 @@ header {
     padding: 5px;
     margin-top: 0; }
   .tags-wrapper .tag {
-    padding: 7px;
-    border-radius: 3px; }
+    padding: 7px; }
 
 header .tags .tag {
   display: inline-block;
@@ -296,3 +294,9 @@ footer {
   align-items: center;
   font-size: 12px;
   justify-content: center; }
+
+.export-json {
+  padding-left: 10px;
+  text-decoration: underline;
+  color: #666;
+  cursor: pointer; }

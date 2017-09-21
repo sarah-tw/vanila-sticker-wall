@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import $ from 'jquery';
 import Sticker from './sticker';
+import { saveAs } from 'file-saver';
 
 //import Sticker from './sticker';
 
@@ -106,6 +107,15 @@ let StickerWall = () => {
 		renderStickers(filteredStickers);
 	}
 
+	const exportJson = () => {
+		if(confirm("Continue to download sticker list json file?")){
+			const stickerListString = localStorage.getItem("stickers");
+			const fileName = "stickers.json";
+			const blob = new Blob([stickerListString], {type: "text/json;charset=utf-8"});
+			saveAs(blob, fileName);
+		}
+	}
+
 	renderStickers(stickers);
 
 	$('#new_sticker').on('click', addSticker);
@@ -117,8 +127,11 @@ let StickerWall = () => {
 	$('body').on('click', '.edit-tag', showTagBox);
 	$('body').on('click', '.tag', changeTag);
 
+	$('body').on('click', '#export_json', exportJson);
+
 	$('body').on('click', '.tag-filter .tag', filterByTag);
 	
+
 	$.ajax({
 		url: "//wisdom.liyaodong.com/v1/random"
 		}).done((response) => {
